@@ -36,7 +36,8 @@ def merge_sort(my_list):
     return merge(merge_sort(left), merge_sort(right))
         
 
-my_list = [3, 6, 10, 1, 30, 29, 2]
+# my_list = [3, 6, 10, 1, 30, 29, 2]
+my_list = 'one fish two fish red fish blue fish'.split()
 merge_sort(my_list)
 print(merge_sort(my_list))
 # print(merge([3,4,5], [1, 8, 9]))
