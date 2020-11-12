@@ -65,7 +65,7 @@ def partition(items, low, high):
     # Move pivot to end
     items[p_index], items[high] = items[high], items[p_index]
     pivot = high
-    start = low
+
 
     # Loop through all items in range [low...high]
     for _ in range(low, high):
