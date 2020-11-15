@@ -30,42 +30,52 @@ def bubble_sort(items):
                 unsorted = True
 
 def selection_sort(items):
-    """Sort given items by finding minimum item, swapping it with first
-    unsorted item, and repeating until all items are in sorted order.
+    """Sort given items by finding minimum item, swapping it with first unsorted item, and repeating until all items are in sorted order.
     Running time: O(n^2) In all cases
     Memory usage: O(1) Because the sorting is done in-place"""
-    
-    # Repeat until all items are in sorted order
-    for i in range(len(items)-1):
-        # increments after each pass/sort
+
+    # Selection sort works by finding and placing minimum items, so for each pass, the min index is set to i
+    for i in range(len(items)):
         min_index = i
         
         # Find minimum item in remaining unsorted items
-        for j in range(i+1, len(items)-1):
+        for j in range(i+1, len(items)):
             if items[j] < items[min_index]:
+                # set new min to j
                 min_index = j
 
-        # Swap it with first unsorted item
-        items[i], items[min_index] = items[min_index], items[i]
+        if min_index != i:
+            # Swap it with first unsorted item
+            items[i], items[min_index] = items[min_index], items[i]
+    return items
 
 
 def insertion_sort(items):
     """Sort given items by taking first unsorted item, inserting it in sorted
     order in front of items, and repeating until all items are in order.
-    Running time: Worst/Avg O(n^2) when items are in opposite order or randomly scrambled Best O(n) when array is already sorted, outer loop runs n times but inner loop doesn't run at all
-    Memory usage: O(1) because extra variable used"""
-    # Repeat until all items are in sorted order
-    for i in range(1, len(items)):
-        key = items[i]
-        j = i - 1
+    Running time: 
+        - Worst/Avg: O(n^2) when items are in reverse sorted order or randomly scrambled 
+        - Best: O(n) when current value is > then precending value, insertion is O(1) constant time (outer loop runs n times but inner loop doesn't run at all) or if array is already sorted
+    Memory usage: O(1), extra variable used"""
 
+    # Set sorted subarray starting at index 0, unsorted subarray starting at index 1
+    for i in range(1, len(items)):
         # Take first unsorted item
-        while j >= 0 and key < items[j]:
-            items[j+1] = items[j]
-            j = j - 1
-        # Insert it in sorted order in front of items
-        items[j + 1] = key
+        current = items[i]
+        previous = i - 1
+
+        # Exits when previous = -1 or if current > preceding value
+        while previous >= 0 and current < items[previous]:
+            # slide sorted value one index to the right
+            items[previous+1] = items[previous]
+            # move sorted index pointer back one to evaluate if current < precendin prev 
+            previous = previous - 1
+            
+        # Insert current in sorted order in front of previous item pointer
+        items[previous + 1] = current
+    return items
 
 if __name__ == "__main__":
-    items = [2,3,4,8,7,5]
-    print(bubble_sort(items))
+    items = [3,2,8,6,4,1]
+    print(items)
+    print(selection_sort(items))
