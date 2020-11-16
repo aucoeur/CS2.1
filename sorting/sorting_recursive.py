@@ -41,7 +41,7 @@ def merge_sort(items):
     # Merge sorted halves into one list in sorted order
     # [:] shallow copy
     items[:] = merge(merge_sort(left), merge_sort(right))
-    return items[:] 
+    return items
 
 def median(x, y, z):
     ''' Returns median of three numbers - O(1)
