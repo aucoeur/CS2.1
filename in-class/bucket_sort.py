@@ -42,7 +42,7 @@ def bucket_sort(numbers, num_buckets=10):
     except TypeError:
         num_buckets = 26
         max_str = max(numbers).lower()
-        maximum = ascii_lowercase.index(max_str[0])
+        maximum = ascii_lowercase.index(max_str[0]) + 1
 
     # Find range of given numbers (minimum and maximum values)
     divider = maximum + 1 // num_buckets
@@ -65,10 +65,10 @@ def bucket_sort(numbers, num_buckets=10):
     return output
     # FIXME: Improve this to mutate input instead of creating new output list
 
-numbers = [4,12,6,32,8,6,15,41,25,56,22,74,65,30,13]
+# numbers = [4,12,6,32,8,6,15,41,25,56,22,74,65,30,13]
 # numbers = [5, 7, 3]
 # numbers = [5, 3]
-# numbers = 'Doc Grumpy Happy Sleepy Bashful Sneezy Dopey'.split()
+numbers = 'Doc Grumpy Happy Sleepy Bashful Sneezy Dopey'.split()
 sorted_items = sorted(numbers)  
 print(numbers)
 print(sorted_items)

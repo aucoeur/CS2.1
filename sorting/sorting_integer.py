@@ -1,5 +1,5 @@
 #!python
-from math import ceil, floor
+from string import ascii_lowercase
 from sorting_iterative import insertion_sort
 
 def counting_sort(numbers):
@@ -61,17 +61,25 @@ def bucket_sort(numbers, num_buckets=10):
     Memory usage: O(n+k) n buckets, k possible values"""
     if not numbers:
         return []
-    
+    try:
+        num_buckets = len(numbers)
+        maximum = max(numbers) + 1
+
+    except TypeError:
+        num_buckets = 26
+        max_str = max(numbers).lower()
+        maximum = ascii_lowercase.index(max_str[0]) + 1
+
     # Find range of given numbers (minimum and maximum values)
-    divider = max(numbers) + 1 // len(numbers)
+    divider = maximum + 1 // num_buckets
 
     # Create list of buckets to store numbers in subranges of input range
-    buckets = [[] for _ in range(len(numbers))]
+    buckets = [[] for _ in range(num_buckets)]
 
     # Loop over given numbers and place each item in appropriate bucket
-    for i in range(len(numbers)):
-        b_index = numbers[i] // divider
-        buckets[b_index].append(numbers[i])
+    for i, each in enumerate(numbers):
+        b_index = i // divider
+        buckets[b_index].append(each)
 
     output = []
     # Sort each bucket using any sorting algorithm (recursive or another)
@@ -79,6 +87,6 @@ def bucket_sort(numbers, num_buckets=10):
     for bucket in buckets:
         insertion_sort(bucket)
         output.extend(bucket)
-    numbers[:] = output
+    numbers[:] = output 
     return numbers
-#     # FIXME: Improve this to mutate input instead of creating new output list
+    # FIXME: Improve this to mutate input instead of creating new output list
