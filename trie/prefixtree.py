@@ -2,7 +2,6 @@
 
 from prefixtreenode import PrefixTreeNode
 
-
 class PrefixTree:
     """PrefixTree: A multi-way prefix tree that stores strings with efficient
     methods to insert a string into the tree, check if it contains a matching
